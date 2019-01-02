@@ -55,7 +55,7 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\lib\\gcc\\mingw32\\5.1.0\\include",
+                    "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\lib\\gcc\\mingw32\\5.1.0\\include\\c++",
                     "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
