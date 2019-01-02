@@ -1,0 +1,26 @@
+{
+    "todohighlight.keywords": [
+        {
+            "text": "FIXED:",
+            "color": "white",
+            "backgroundColor": "blue",
+            "overviewRulerColor": "white"
+        },
+        {
+            "text": "LINK:",
+            "color": "white",
+            "backgroundColor": "green",
+            "overviewRulerColor": "white"
+        }
+    ],
+    "workbench.iconTheme": "vscode-icons",
+    "docthis.includeDescriptionTag": true,
+    // 控制编辑器中呈现空白字符的方式，可能为“无”、“边界”和“全部”。“边界”选项不会在单词之间呈现单空格。
+    "editor.renderWhitespace": "all",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "explorer.confirmDelete": false,
+    "team.showWelcomeMessage": false,
+    "tslint.autoFixOnSave": false
+}
