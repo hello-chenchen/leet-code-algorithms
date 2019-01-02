@@ -22,5 +22,8 @@
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
     "explorer.confirmDelete": false,
     "team.showWelcomeMessage": false,
-    "tslint.autoFixOnSave": false
+    "tslint.autoFixOnSave": false,
+    "files.associations": {
+        "vector": "cpp"
+    }
 }
