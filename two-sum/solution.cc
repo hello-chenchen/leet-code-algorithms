@@ -1,5 +1,5 @@
 //LINK:https://leetcode.com/problems/two-sum/
-//COMPILE:g++ -c two-sum/solution.cc -o tmp/main -std=c++11
+//COMPILE:g++ two-sum/solution.cc -o tmp/main -std=c++11
 #include <vector>
 #include <iostream>
 
