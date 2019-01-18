@@ -1,4 +1,5 @@
 //LINK:https://leetcode.com/problems/two-sum/
+//COMPILE:g++ -c two-sum/solution.cc -o tmp/main -std=c++11
 #include <vector>
 #include <iostream>
 
@@ -29,7 +30,7 @@ public:
     }
 };
 
-main(int argc, char const *argv[])
+int main(int argc, char const *argv[])//FIXED: C++ requires a type specifier for all declarations
 {
     vector<int> nums {2, 7, 11, 15};
     vector<int> ret = Solution().twoSum(nums, 9);

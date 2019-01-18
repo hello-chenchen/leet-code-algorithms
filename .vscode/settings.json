@@ -11,6 +11,12 @@
             "color": "white",
             "backgroundColor": "green",
             "overviewRulerColor": "white"
+        },
+        {
+            "text": "COMPILE:",
+            "color": "white",
+            "backgroundColor": "red",
+            "overviewRulerColor": "white"
         }
     ],
     "workbench.iconTheme": "vscode-icons",
