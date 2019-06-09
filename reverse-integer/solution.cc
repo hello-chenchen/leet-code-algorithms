@@ -14,7 +14,7 @@ class Solution {
             int* num = new int[1024];
             int index = 0;
             while(x <= -10 || x >= 10) {
-                num[index++] = x - (x / 10) * 10;
+                num[index++] = x % 10;
                 x = x / 10;
             }
 
