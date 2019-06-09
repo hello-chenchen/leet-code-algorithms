@@ -15,7 +15,7 @@ public:
         }
 
         for(int i = 0; i < nums.size(); i++) {
-            for(int n = 1; n < nums.size(); n++) {
+            for(int n = i + 1; n < nums.size(); n++) {
                 if(n == i)
                     continue;
                 int num_i = nums[i];
