@@ -10,69 +10,78 @@ class Solution {
 public:
     int romanToInt(string s) {
         int result = 0;
-        while(s.size() > 0) {
-            string firstChars = s.substr(0, 2);
-            int twoChars = convert2Word(firstChars);
-            if(0 == twoChars) {
-                string firstChar = s.substr(0, 1);
-                twoChars = convert1Word(firstChar);
-                if(0 == twoChars) {
+        for(int i = 0; i < s.size(); i++) {
+            switch(s[i]) {
+                case 'M': {
+                    result += 1000;
+                    break;
+                } case 'D': {
+                    result += 500;
+                    break;
+                } case 'C': {
+                    switch(s[++i]) {
+                        case 'D': {
+                            result += 400;
+                            break;
+                        } case 'M': {
+                            result += 900;
+                            break;
+                        } default: {
+                            result += 100;
+                            --i;
+                            break;
+                        }
+                    }
+                    break;
+                } case 'L': {
+                    result += 50;
+                    break;
+                } case 'X': {
+                    switch(s[++i]) {
+                        case 'L': {
+                            result += 40;
+                            break;
+                        } case 'C': {
+                            result += 90;
+                            break;
+                        } default: {
+                            result += 10;
+                            --i;
+                            break;
+                        }
+                    }
+                    break;
+                } case 'V': {
+                    result += 5;
+                    break;
+                } case 'I': {
+                    switch(s[++i]) {
+                        case 'V': {
+                            result += 4;
+                            break;
+                        } case 'X': {
+                            result += 9;
+                            break;
+                        } default: {
+                            result += 1;
+                            --i;
+                            break;
+                        }
+                    }
+                    break;
+                } default: {
                     return 0;
-                } else {
-                    s.replace(0, 1, "");
                 }
-            } else {
-                s.replace(0, 2, "");
             }
-
-            result += twoChars;
         }
-
-        if(result < 1 || result > 3999) {
-            return 0;
-        }
-
         return result;
-    }
-
-private:
-    int convert2Word(string word) {
-        if(word.size() < 2) {
-            return 0;
-        }
-
-        map<string, int> Roman2Words({ {"IV", 4}, {"IX", 9},
-            {"XL", 40}, {"XC", 90}, {"CD", 400}, {"CM", 900} });
-
-        map<string, int>::iterator itr = Roman2Words.find(word);
-        if(itr != Roman2Words.end()) {
-            return itr->second;
-        } else {
-            return 0;
-        }
-    }
-
-    int convert1Word(string word) {
-        if(word.size() < 1) {
-            return 0;
-        }
-
-        map<string, int> Roman1Words({ {"I", 1}, {"V", 5}, {"X", 10},
-            {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000} });
-
-        map<string, int>::iterator itr = Roman1Words.find(word);
-        if(itr != Roman1Words.end()) {
-            return itr->second;
-        } else {
-            return 0;
-        }
     }
 };
 
 int main(int argc, char const *argv[])
 {
     Solution aa;
-    int bb = aa.romanToInt("CMaI");
+    int bb = aa.romanToInt("MCMXCIV");
     cout << "bb: " << bb << endl;
     return 0;
 }
