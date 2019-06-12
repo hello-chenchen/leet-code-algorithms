@@ -12,40 +12,16 @@ struct TreeNode {
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int sum) {
-        vector<int> list;
-        int result = pathDec(root, list, sum);
-        if(!result) {
-            return true;
-        }
-
-        return false;
-    }
-
-    int pathDec(TreeNode* root, vector<int>& list, int total) {
         if(NULL == root) {
-            return -1;
+            return false;
         }
 
-        total = total - root->val;
-        if(0 == total) {
-            if(root->left == NULL && root->right == NULL) {
-                return 0;
-            } else {
-                int result = pathDec(root->left, list, total);
-                if(0 == result) {
-                    return 0;
-                } else {
-                    return pathDec(root->right, list, total);
-                }
-            }
-        } else {
-            int result = pathDec(root->left, list, total);
-            if(0 == result) {
-                return 0;
-            } else {
-                return pathDec(root->right, list, total);
-            }
+        sum -= root->val;
+        if(NULL == root->left && NULL == root->right) {
+            return 0 == sum;
         }
+
+        return hasPathSum(root->left, sum) || hasPathSum(root->right, sum);
     }
 };
 
