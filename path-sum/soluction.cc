@@ -15,10 +15,6 @@ public:
         vector<int> list;
         int result = pathDec(root, list, sum);
         if(!result) {
-            for(int i = 0; i < list.size(); i++) {
-                cout << "list[" << i << "]: " << list[i];
-                cout << endl;
-            }
             return true;
         }
 
@@ -27,20 +23,12 @@ public:
 
     int pathDec(TreeNode* root, vector<int>& list, int total) {
         if(NULL == root) {
-            // if(!total) {
-            //     return 0;
-            // }
             return -1;
         }
 
-        cout << "val: " << root->val << " total: " << total << endl;
-
         total = total - root->val;
-        cout << "total: " << total << endl;
         if(0 == total) {
             if(root->left == NULL && root->right == NULL) {
-                cout << "push data: " << root->val << endl;
-                list.push_back(root->val);
                 return 0;
             } else {
                 int result = pathDec(root->left, list, total);
@@ -51,9 +39,7 @@ public:
                 }
             }
         } else {
-            cout << "left: " << endl;
             int result = pathDec(root->left, list, total);
-            cout << "result: " << result << endl;
             if(0 == result) {
                 return 0;
             } else {
