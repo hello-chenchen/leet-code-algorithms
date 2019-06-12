@@ -11,65 +11,25 @@ struct ListNode {
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        if(NULL == l1 && NULL == l2) {
-            return NULL;
-        }
-
-        int index1 = 0;
-        int index2 = 0;
-        int val = 0;
-        val = compareVal(l1, l2);
-        ListNode* mergeList = new ListNode(val);
+        ListNode* mergeList = new ListNode(0);
         ListNode* temp = mergeList;
-        while((NULL != l1) || (NULL != l2)) {
+        while((NULL != l1) && (NULL != l2)) {
             temp->next = compareList(l1, l2);
             temp = temp->next;
         }
-        return mergeList;
+
+        temp->next = NULL == l1 ? l2 : l1;
+        return mergeList->next;
     }
 
 private:
     ListNode* compareList(ListNode*& l1, ListNode*& l2) {
         ListNode* result = NULL;
-        if(NULL == l1 || NULL == l2) {
-            if(NULL != l1) {
-                result = l1;
-                l1 = l1->next;
-            } else {
-                result = l2;
-                l2 = l2->next;
-            }
-            return result;
-        }
-
         if(l1->val < l2->val) {
             result = l1;
             l1 = l1->next;
         } else {
             result = l2;
-            l2 = l2->next;
-        }
-        return result;
-    }
-
-    int compareVal(ListNode*& l1, ListNode*& l2) {
-        int result = 0;
-        if(NULL == l1 || NULL == l2) {
-            if(NULL != l1) {
-                result = l1->val;
-                l1 = l1->next;
-            } else {
-                result = l2->val;
-                l2 = l2->next;
-            }
-            return result;
-        }
-
-        if(l1->val < l2->val) {
-            result = l1->val;
-            l1 = l1->next;
-        } else {
-            result = l2->val;
             l2 = l2->next;
         }
         return result;
