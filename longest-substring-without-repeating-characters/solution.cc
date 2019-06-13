@@ -2,34 +2,25 @@
 #include <map>
 #include <vector>
 #include <iostream>
+#include <list>
 using namespace std;
 
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if(s.size() < 2) {
-            return s.size();
-        }
-        int result = 1;
-        for(int i = s.size()-1; i >= 0; i--) {
-            cout << "i: " << i << endl;
-            for(int n = i-1; n >= 0; n--) {
-                cout << "n: " << n << " s[" << i << "]: "
-                << s[i] << " s[" << n << "]: " << s[n] << endl;
-                if(s[i] != s[n]) {
-                    int num = i - n + 1;
-                    cout << "num: " << num << " result: " << result << endl;
-                    if(num > result) {
-                        // cout << "result1: " << result << endl;
-                        result = num;
-                    }
-                } else {
-                    break;
-                }
+        int m[256]={0};//字符有256个
+        int left=0;//查找的左边界
+        int mlen=0;//结果
+        for(int i = 0; i < s.length(); i++) {
+            if(m[s[i]] == 0 || m[s[i]] < left) {
+                mlen = max(mlen, i - left + 1);
+            } else {
+                left = m[s[i]];
             }
+            m[s[i]] = i + 1;
         }
 
-        return result;
+        return mlen;
     }
 };
 
