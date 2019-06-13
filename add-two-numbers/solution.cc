@@ -10,35 +10,38 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        string strLen1 = "";
-        string strLen2 = "";
-
-        int index1 = 0;
-        while(NULL != l1) {
-            strLen1.insert(index1++, to_string(l1->val));
+        ListNode* res = new ListNode(0);
+        ListNode* result = res;
+        while((l1 != NULL) && (l2 != NULL)) {
+            int val = l1->val + l2->val;
             l1 = l1->next;
-        }
-
-        int index2 = 0;
-        while(NULL != l2) {
-            strLen2.insert(index2++, to_string(l2->val));
             l2 = l2->next;
+            if(val < 10) {
+                result->next = new ListNode(val);
+                result = result->next;
+            } else {
+                int modVal = val % 10;
+                int divVal = val / 10;
+                result->next = new ListNode(modVal);
+                result = result->next;
+
+                if(NULL == l1) {
+                    l1 = new ListNode(divVal);
+                } else if(NULL == l2) {
+                    l2 = new ListNode(divVal);
+                } else {
+                    l1->val += divVal;
+                }
+            }
         }
 
-        long long value1 = stoll(strLen1);
-        long long value2 = stoll(strLen2);
-        long long value3 = value1 + value2;
-        string value = to_string(value3);
-        ListNode* result = new ListNode(0);
-        ListNode* temp = result;
-        int valLen = value.size();
-        for(int i = 0; i < valLen; i++) {
-            char a = value[valLen-1 - i];
-            temp->next = new ListNode(a - ('1' - 1));
-            temp = temp->next;
+        if(NULL != l1) {
+            result->next = l1;
+        } else if(NULL != l2) {
+            result->next = l2;
         }
 
-        return result->next;
+        return res->next;
     }
 };
 
