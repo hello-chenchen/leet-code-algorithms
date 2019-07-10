@@ -22,11 +22,11 @@ public:
     }
 
 private:
-    void toHex(int num, string& hexStr) {
+    void toHex(unsigned int num, string& hexStr) {
         if(0 == num) {
             return;
         }
-        int restLeft = (num >> 4) & 0x0fffffff;
+        int restLeft = num >> 4;
         int rightNum = num & 0x0000000f;
         auto result = m_charInt.find(rightNum);
         hexStr.append(result->second);
