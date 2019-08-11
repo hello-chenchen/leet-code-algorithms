@@ -1,4 +1,5 @@
 #include <vector>
+#include <list>
 #include <iostream>
 
 using namespace std;
@@ -7,8 +8,8 @@ class MinStack {
 public:
     /** initialize your data structure here. */
     MinStack() {
-        _M_val = new vector<int>();
-        _M_min_val = new vector<int>();
+        _M_val = new list<int>();
+        _M_min_val = new list<int>();
     }
 
     ~MinStack() {
@@ -24,7 +25,7 @@ public:
         if(0 == _M_val->size()) {
             _M_min_val->push_back(x);
         } else{
-            int minTop = _M_min_val->at(_M_min_val->size() - 1);
+            int minTop = _M_min_val->back();
             if(x < minTop) {
             _M_min_val->push_back(x);
             } else {
@@ -41,16 +42,16 @@ public:
     }
 
     int top() {
-        return _M_val->at(_M_val->size() - 1);
+        return _M_val->back();
     }
 
     int getMin() {
-        return _M_min_val->at(_M_min_val->size() - 1);
+        return _M_min_val->back();
     }
 
 private:
-    vector<int>* _M_val;
-    vector<int>* _M_min_val;
+    list<int>* _M_val;
+    list<int>* _M_min_val;
 };
 
 /**
@@ -68,14 +69,12 @@ int main(int argc, char const *argv[])
     MinStack minStack;
     minStack.push(-2);
     minStack.push(0);
-    minStack.push(-1);
+    minStack.push(-3);
     // minStack.pop();
 
-    // int a = minStack.getMin();
-    // int b = minStack.top();
-    // cout << a << endl;
-    // cout << b << endl;
-    // vector<int>* aa = new vector<int>();
-    // cout << aa->size() << endl;
+    int a = minStack.getMin();
+    int b = minStack.top();
+    cout << a << endl;
+    cout << b << endl;
     return 0;
 }
