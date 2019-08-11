@@ -1,4 +1,4 @@
-#include <list>
+#include <deque>
 
 using namespace std;
 
@@ -6,7 +6,7 @@ class MyStack {
 public:
     /** Initialize your data structure here. */
     MyStack() {
-        _M_val = new list<int>();
+        _M_val = new deque<int>();
     }
 
     ~MyStack() {
@@ -37,5 +37,5 @@ public:
     }
 
 private:
-    list<int>* _M_val;
+    deque<int>* _M_val;
 };
