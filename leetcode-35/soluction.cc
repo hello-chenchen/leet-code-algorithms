@@ -19,7 +19,6 @@ private:
         //iteration
         while(start < end) {
             int middle = (end - start) / 2;
-            cout << "start: " << start << " middle: " << middle << " end: " << end << endl;
             if(target > nums[start + middle]) {
                 start = start + middle + 1;
             } else if(target < nums[start + middle]) {
