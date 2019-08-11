@@ -16,6 +16,19 @@ public:
 
 private:
     int binarySearch(vector<int>& nums, int start, int end, int target) {
+        //iteration
+        while(start < end) {
+            int middle = (end - start) / 2;
+            cout << "start: " << start << " middle: " << middle << " end: " << end << endl;
+            if(target > nums[start + middle]) {
+                start = start + middle + 1;
+            } else if(target < nums[start + middle]) {
+                end = start + middle;
+            } else {
+                return start + middle;
+            }
+        }
+
         if(start == end) {
             if (target > nums[start]) {
                 vector<int>::iterator itr = nums.begin();
@@ -28,18 +41,18 @@ private:
             } else {
                 return start;
             }
+        } else {
+            return -1;
         }
-
-        int middle = (end - start) / 2;
 
         //recursion
-        if (target > nums[start + middle]) {
-            return binarySearch(nums, start + middle + 1, end, target);
-        } else if (target < nums[start + middle]) {
-            return binarySearch(nums, start, start + middle, target);
-        } else {
-            return start + middle;
-        }
+        // if (target > nums[start + middle]) {
+        //     return binarySearch(nums, start + middle + 1, end, target);
+        // } else if (target < nums[start + middle]) {
+        //     return binarySearch(nums, start, start + middle, target);
+        // } else {
+        //     return start + middle;
+        // }
     }
 };
 
@@ -48,7 +61,7 @@ int main(int argc, char const *argv[])
     /* code */
     Solution aa;
     vector<int> bb = {1, 3};
-    int result = aa.searchInsert(bb, 0);
+    int result = aa.searchInsert(bb, 4);
 
     cout << "result: " << result << endl;
     cclib::common::util::printVectorValue(bb);
