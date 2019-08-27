@@ -7,21 +7,19 @@ using namespace cclib::common::util;
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> result;
-       for(int i = 0; i < nums1.size(); i++) {
-           vector<int> temp;
+        for(int i = 0; i < nums1.size(); i++) {
+           int temp = -1;
            for(int n = nums2.size() - 1; n >= 0; n--) {
                if(nums2[n] == nums1[i]) {
-                   int value = 0 == temp.size() ? -1 : temp.back();
-                   result.push_back(value);
+                   nums1[i] = temp;
                    break;
                } else if(nums2[n] > nums1[i]) {
-                    temp.push_back(nums2[n]);
+                    temp = nums2[n];
                }
            }
        }
 
-       return result;
+       return nums1;
     }
 };
 
