@@ -6,9 +6,6 @@ using namespace std;
 class Solution {
 public:
     string removeOuterParentheses(string S) {
-        if(S.size() <= 2) {
-            return "";
-        }
         int leftIndex = 1;
         int rightIndex = 0;
         string ret = "";
@@ -23,7 +20,7 @@ public:
                 leftIndex = 1;
                 rightIndex = 0;
             } else {
-                ret += S[i];
+                ret.push_back(S[i]);
             }
         }
 
