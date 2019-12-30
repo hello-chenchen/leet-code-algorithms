@@ -1,34 +1,24 @@
 #include <string>
 #include <iostream>
-#include <stack>
-#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
     string removeDuplicates(string S) {
-        stack<char> result;
+        string result = "";
 
         for(int i = 0; i < S.size(); i++) {
             if(result.size() != 0) {
             }
-            if(result.size() == 0 || result.top() != S[i]) {
-                result.push(S[i]);
+            if(result.size() == 0 || result[result.size()-1] != S[i]) {
+                result.push_back(S[i]);
             } else {
-                result.pop();
+                result.pop_back();
             }
         }
 
-        string strResult = "";
-        int a = result.size();
-        for(int i = 0; i < a; i++) {
-            strResult.push_back(result.top());
-            result.pop();
-        }
-
-        reverse(strResult.begin(),strResult.end());
-        return strResult;
+        return result;
     }
 };
 
