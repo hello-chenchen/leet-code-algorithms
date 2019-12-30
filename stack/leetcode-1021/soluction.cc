@@ -1,5 +1,4 @@
 #include <string>
-#include <vector>
 #include <iostream>
 
 using namespace std;
@@ -7,33 +6,28 @@ using namespace std;
 class Solution {
 public:
     string removeOuterParentheses(string S) {
-        vector<int> stackResult;
-        cout << S.size() << endl;
-        for(int i = 0; i < S.size(); i++) {
-            vector<char> temp, stackVec;
-            cout << "S[" << i << "]: " << S[i] << endl;
-            temp.push_back(S[i]);
-            if (')' ==  S[i]) {
-                if (2 == temp.size()) {
-                    temp.clear();
-                    for(int n = 0; n < stackVec.size(); n++) {
-                        stackResult.push_back(stackVec[n]);
-                    }
-                    stackVec.clear();
-                } else {
-                    stackVec.push_front(temp[temp.size()-2]);
-                    stackVec.push_back(temp[temp.size()-1]);
-                    temp.pop_back();
-                    temp.pop_back();
-                }
+        if(S.size() <= 2) {
+            return "";
+        }
+        int leftIndex = 1;
+        int rightIndex = 0;
+        string ret = "";
+        for(int i = 1; i < S.size(); i++) {
+            if(S[i] == '(') {
+                leftIndex++;
+            } else {
+                rightIndex++;
+            }
+            if(leftIndex == rightIndex) {
+                i++;
+                leftIndex = 1;
+                rightIndex = 0;
+            } else {
+                ret += S[i];
             }
         }
 
-        string result;
-        for(int i = 0; i < stackResult.size(); i++) {
-            result.push_back(stackResult[i]);
-        }
-        return result;
+        return ret;
     }
 };
 
@@ -42,6 +36,6 @@ int main(int argc, char const *argv[])
     /* code */
     Solution solution;
     string test = solution.removeOuterParentheses("(()())(())");
-    cout << test.size() << endl;
+    cout << test << endl;
     return 0;
 }
