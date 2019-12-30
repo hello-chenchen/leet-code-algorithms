@@ -9,9 +9,7 @@ public:
         string result = "";
 
         for(int i = 0; i < S.size(); i++) {
-            if(result.size() != 0) {
-            }
-            if(result.size() == 0 || result[result.size()-1] != S[i]) {
+            if(result.size() == 0 || *(--result.end()) != S[i]) {
                 result.push_back(S[i]);
             } else {
                 result.pop_back();
