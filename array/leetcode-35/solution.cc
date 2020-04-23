@@ -13,31 +13,33 @@ public:
 private:
     int binarySearch(vector<int>& nums, int target, int startIndex, int endIndex) {
         int midIndex = (endIndex + startIndex) / 2;
-        if(startIndex == midIndex) {
-            if(target <= nums[startIndex]) {
-                return startIndex;
-            } else if(target > nums[endIndex]) {
-                return endIndex + 1;
+
+        while(midIndex > startIndex) {
+            if(nums[midIndex] > target) {
+                endIndex = midIndex;
+            } else if(nums[midIndex] < target) {
+                startIndex = midIndex;
             } else {
-                return startIndex + 1;
+                return midIndex;
             }
+            midIndex = (endIndex + startIndex) / 2;
         }
 
-        if(nums[midIndex] > target) {
-            return binarySearch(nums, target, startIndex, midIndex);
-        } else if(nums[midIndex] < target) {
-            return binarySearch(nums, target, midIndex, endIndex);
+        if(target <= nums[startIndex]) {
+            return startIndex;
+        } else if(target > nums[endIndex]) {
+            return endIndex + 1;
         } else {
-            return midIndex;
+            return startIndex + 1;
         }
     }
 };
 
 int main(int argc, char const *argv[])
 {
-    vector<int> input{1};
+    vector<int> input{1,3,5,6};
     Solution solution;
-    int result = solution.searchInsert(input, 1);
+    int result = solution.searchInsert(input, 0);
     cout << "result: " << result << endl;
     return 0;
 }
