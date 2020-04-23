@@ -12,18 +12,17 @@ public:
 
 private:
     int binarySearch(vector<int>& nums, int target, int leftIndex, int rightIndex) {
-        while(leftIndex <= rightIndex) {
-            int midIndex = (leftIndex + rightIndex) / 2;
-            if(nums[midIndex] == target) {
-                return midIndex;
-            } else if(nums[midIndex] < target) {
-                leftIndex = midIndex + 1;
-            } else {
-                rightIndex = midIndex - 1;
-            }
+        if(leftIndex > rightIndex) {
+            return leftIndex;
         }
-
-        return leftIndex;
+        int midIndex = (leftIndex + rightIndex) / 2;
+        if(nums[midIndex] == target) {
+            return midIndex;
+        } else if(nums[midIndex] < target) {
+            return binarySearch(nums, target, midIndex + 1, rightIndex);
+        } else {
+            return binarySearch(nums, target, leftIndex, midIndex - 1);
+        }
     }
 };
 
