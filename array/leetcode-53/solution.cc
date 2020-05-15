@@ -10,26 +10,22 @@ public:
         if(0 == nums.size()) {
             return numeric_limits<int>::min();
         }
+        vector<int> max_num_group = {};
 
-        int sum = nums[0];
-        int second_sum = sum;
-        for(int i = 1; i < nums.size(); i++) {
-            cout << sum << " " << second_sum << " " << nums[i] << endl;
-            if(0 <= nums[i]) {
-                if(sum < 0) {
-                    sum = nums[i];
-                } else {
-                    sum += nums[i];
-                }
+        int group_max = nums[0];
+        int group_total = group_max;
+        for(int i = 0; i < nums.size(); i++) {
+            cout << group_max << " " << " " << nums[i] << endl;
+            if(group_max <= 0) {
+                group_max = group_max > nums[i] ? group_max : nums[i];
             } else {
-                if(i < nums.size() - 2) {
-                    sum = nums[++i];
-                    second_sum = sum;
+                if(nums[i] < 0) {
+                    group_total = group_max + nums[i];
+                } else {
+
                 }
             }
         }
-
-        return sum > second_sum ? sum : second_sum;
     }
 };
 
