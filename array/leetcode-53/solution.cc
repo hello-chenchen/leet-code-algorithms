@@ -7,25 +7,12 @@ using namespace std;
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        if(0 == nums.size()) {
-            return numeric_limits<int>::min();
+        int pre = 0, maxAns = nums[0];
+        for (const auto &x: nums) {
+            pre = max(pre + x, x);
+            maxAns = max(maxAns, pre);
         }
-        vector<int> max_num_group = {};
-
-        int group_max = nums[0];
-        int group_total = group_max;
-        for(int i = 0; i < nums.size(); i++) {
-            cout << group_max << " " << " " << nums[i] << endl;
-            if(group_max <= 0) {
-                group_max = group_max > nums[i] ? group_max : nums[i];
-            } else {
-                if(nums[i] < 0) {
-                    group_total = group_max + nums[i];
-                } else {
-
-                }
-            }
-        }
+        return maxAns;
     }
 };
 
