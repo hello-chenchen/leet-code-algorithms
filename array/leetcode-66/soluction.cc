@@ -6,35 +6,25 @@ using namespace std;
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        vector<int> result;
-        int size = digits.size() - 1;
-        for(int i = size; i > 0; i--) {
-            int num = ++digits[i];
-            if(digits[i] < 9) {
-                result.push_back(num);
-            } else {
-                vector<int> temp = splitVector(num);
-                for(int n = 0; n < temp.size() - 1; n++) {
-                    result.push_back(temp[n]);
-                }
-            }
-        }
-
-        vector<int> a;
-        for(int i = result.size() - 1; i > 0; i--) {
-            a.push_back(result[i]);
-        }
-        return a;
+        return callBackPlus(digits, digits.size() - 1);
     }
 
 private:
-    vector<int> splitVector(int number) {
-        vector<int> result;
-        while (number >> 1) {
-            result.push_back(number % 10);
+    vector<int> callBackPlus(vector<int>& digits, int index) {
+        if(digits[index] < 9) {
+            digits[index] = digits[index] + 1;
+        } else {
+            digits[index] = 0;
+            if(0 == index) {
+                std::vector<int>::iterator it;
+                it = digits.begin();
+                it = digits.insert (it , 1);
+            } else {
+                callBackPlus(digits, index - 1);
+            }
         }
 
-        return result;
+        return digits;
     }
 };
 
