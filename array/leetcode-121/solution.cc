@@ -8,8 +8,7 @@ public:
     int maxProfit(vector<int>& prices) {
         int minPrice = std::numeric_limits<int>::max();
         int result = 0;
-        signed int vectorSize =  prices.size() - 1;
-        for(signed int i = 0; i <= vectorSize; i++) {
+        for(signed int i = 0; i <= prices.size(); i++) {
             if(prices[i] < minPrice) {
                 minPrice = prices[i];
             }
