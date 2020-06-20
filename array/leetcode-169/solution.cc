@@ -1,33 +1,24 @@
 #include <vector>
-#include <map>
-#include <iostream>
 
 using namespace std;
 
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        map<int, int> result;
+        int count = 0;
+        int result = 0 == nums.size() ? 0 : nums[0];
         for(int i = 0; i < nums.size(); i++) {
-            auto iter = result.find(nums[i]);
-            if(result.end() == iter) {
-                result.insert({nums[i], 1});
-            } else {
-                iter->second++;
+            if(0 == count) {
+                result = nums[i];
+                count++;
+            } else if(result == nums[i]) {
+                count++;
+            } else{
+                count--;
             }
         }
 
-        int index = 0, max = 0;
-        auto begin = result.begin();
-        while(begin != result.end()) {
-            if(max < begin->second) {
-                max = begin->second;
-                index = begin->first;
-            }
-            begin++;
-        }
-
-        return index;
+        return result;
     }
 };
 
