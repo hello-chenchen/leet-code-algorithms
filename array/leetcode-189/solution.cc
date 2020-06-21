@@ -1,21 +1,6 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-// int index = 0;
-//         int recyle = 0;
-//         int m = 1;
-//         while(index < size - 1 || m * k >= size) {
-//             // cout << "swap index: " << index << " " << nums[index] << " size-k+recyle: " << size-k+recyle << " " << nums[size-k+recyle] << endl;
-//             swap(nums[index], nums[size-k+recyle]);
-//             index++;
-//             // cout << index << " " << recyle << endl;
-//             if(recyle + 1 == k) {
-//                 recyle = 0;
-//                 m++;
-//             } else {
-//                 recyle++;
-//             }
-//         }
 using namespace std;
 
 class Solution {
