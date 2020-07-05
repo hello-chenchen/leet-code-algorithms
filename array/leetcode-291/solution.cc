@@ -1,23 +1,22 @@
 #include <vector>
 #include <iostream>
-#include <map>
+#include <set>
 
 using namespace std;
 
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        map<int, int> compare;
-        map<int, int>::iterator it;
+        set<int> compare;
+        set<int>::iterator it;
 
         for(int i = 0; i < nums.size(); i++) {
-            it = compare.find(nums[i]);
-            if(it != compare.end()) {
-                if(i - it->second <= k) return true;
-                it->second = i;
-                continue;
+            if(compare.find(nums[i]) != compare.end()) return true;
+            
+            compare.insert(nums[i]);
+            if(compare.size() > k) {
+                compare.erase(nums[i-k]);
             }
-            compare.insert(pair<int, int>(nums[i], i));
         }
 
         return false;
@@ -27,7 +26,7 @@ public:
 int main(int argc, char const *argv[])
 {
     Solution cc;
-    vector<int> a = {1, 0, 1, 1};
-    cout << cc.containsNearbyDuplicate(a, 1);
+    vector<int> a = {1,2,3,1,2,3};
+    cout << cc.containsNearbyDuplicate(a, 2);
     return 0;
 }
