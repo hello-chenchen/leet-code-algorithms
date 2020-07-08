@@ -5,14 +5,28 @@ using namespace std;
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        vector<int> topThree = {-1, -1, -1};
+        vector<int> topThree = {numeric_limits<int>::min(), numeric_limits<int>::min(), numeric_limits<int>::min()};
+        int flag = 0;
         for(int i = 0; i < nums.size(); i++) {
-            if(nums[i] > topThree[0]) {
+            if(nums[i] == numeric_limits<int>::min()) {
+                flag++;
+                continue;
+            }
+            if(nums[i] > topThree[0] && nums[i] != topThree[1] && nums[i] != topThree[2]) {
                 swap(nums[i], topThree[0]);
                 sort(topThree);
             }
         }
-        return topThree[0] >= 0 ? topThree[0] : topThree[2];
+
+        if(flag > 0) {
+            if(topThree[0] == topThree[1] && topThree[0] == numeric_limits<int>::min()) {
+                return topThree[2];
+            } else if(topThree[0] == numeric_limits<int>::min()){
+                return topThree[0];
+            }
+        }
+
+        return topThree[0] > numeric_limits<int>::min() ? topThree[0] : topThree[2];
     }
 
 private:
