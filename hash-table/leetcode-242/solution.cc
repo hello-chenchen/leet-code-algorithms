@@ -22,7 +22,7 @@ public:
         }
 
         for(int i = 0; i < t.length(); i++) {
-            itr = hashMap.find(s[i]);
+            itr = hashMap.find(t[i]);
             if(hashMap.end() != itr) {
                 itr->second--;
             } else {
