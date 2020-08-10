@@ -7,33 +7,35 @@ var getHint = function(secret, guess) {
     let bulls = 0;
     let cows = 0;
 
-    let setMap = new Map();
-    let setTemp = new Map();
+    let hashMap = new Map();
     for(let i = 0; i < secret.length; i++) {
-        if(guess[i] === secret[i]) {
-            bulls++;
+        let temp = hashMap.get(secret[i]);
+        if(undefined === temp) {
+            hashMap.set(secret[i], 1);
         } else {
-            let temp = setMap.get(secret[i]);
-            if(undefined === temp) {
-                setMap.set(secret[i], 0);
-            } else {
-                setMap.set(secret[i], temp + 1);
-            }
-
-            let temp = setTemp.get(guess[i]);
-            if(undefined === setTemp.get(guess[i])) {
-                setTemp.set(guess[i], 0);
-            } else {
-                setTemp.set(guess[i], temp + 1);
-            }
+            hashMap.set(secret[i], temp + 1);
         }
     }
 
-    setTemp.forEach((value, key) => {
-        if(setMap.has(key)) {
-            cows += setTemp.get()
+    //for bulls
+    var guessCopy = [];
+    for(let i = 0; i < guess.length; i++) {
+        if(secret[i] == guess[i]) {
+            hashMap.set(secret[i], hashMap.get(secret[i]) - 1);
+            bulls++;
+        } else {
+            guessCopy.push(guess[i]);
         }
-    });
+    }
+
+    //for cows
+    for(let i = 0; i < guessCopy.length; i++) {
+        let temp = hashMap.get(guessCopy[i]);
+        if(undefined != temp && 0 != temp) {
+            hashMap.set(guessCopy[i], temp - 1);
+            cows++;
+        }
+    }
 
     return bulls + 'A' + cows + 'B';
 };
