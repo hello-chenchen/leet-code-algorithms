@@ -13,11 +13,9 @@ var deleteDuplicates = function(head) {
     var temp = result.val;
     var temp1 = result;
     while(undefined != head.next) {
-        // console.log(head.next.val + " " + temp);
         if(temp != head.next.val) {
             result.next = new ListNode(head.next.val, undefined);
             result = result.next;
-            // console.log(temp1);
             temp = head.next.val;
         }
         head.next = head.next.next;
