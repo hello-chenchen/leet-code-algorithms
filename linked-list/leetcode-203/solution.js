@@ -17,14 +17,32 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var removeElements = function(head, val) {
-    let sentinel = new ListNode(0);
-    sentinel.next = head;
+    // let sentinel = new ListNode(0);
+    // sentinel.next = head;
 
-    let prev = sentinel, curr = head;
-    while (curr != null) {
-      if (curr.val == val) prev.next = curr.next;
-      else prev = curr;
-      curr = curr.next;
+    // let prev = sentinel, curr = head;
+    // while (curr != null) {
+    //   if (curr.val == val) prev.next = curr.next;
+    //   else prev = curr;
+    //   curr = curr.next;
+    // }
+    // return sentinel.next;
+    while(null != head && val == head.val) {
+        head = head.next;
     }
-    return sentinel.next;
+    if(null == head) return head;
+
+    let temp = head.next;
+    let parent = head;
+    while(null != temp) {
+        if(val == temp.val) {
+            parent.next = temp.next;
+        } else {
+            parent = temp;
+        }
+
+        temp = temp.next;
+    }
+
+    return head;
 };
