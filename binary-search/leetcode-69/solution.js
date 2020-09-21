@@ -3,6 +3,7 @@
  * @return {number}
  */
 var mySqrt = function(x) {
+    if(x <= 1) return x;
     return binarySearch(x, 0, x);
 };
 
@@ -17,14 +18,7 @@ function binarySearch(x, start, end) {
     } else {
         if(middle * middle > x) {
             return middle - 1;
-        } else if(middle * middle < x) {
-            if((middle + 1) * (middle + 1) > x) {
-                return middle;
-            } else {
-                return middle + 1;
-            }
-        } else {
-            return middle;
         }
+        return middle;
     }
 }
