@@ -23,14 +23,17 @@ var solution = function(isBadVersion) {
 };
 
 function badVersion(isBadVersion, start, end) {
-    let middleVersion = parseInt((start + end) / 2);
-    if(isBadVersion(middleVersion - 1) != isBadVersion(middleVersion)) {
-        return middleVersion;
-    } else {
-        if(true == isBadVersion(middleVersion)) {
-            return badVersion(isBadVersion, start, middleVersion);
+    let middleVersion = 0;
+    while(start <= end) {
+        middleVersion = parseInt((start + end) / 2);
+        if(isBadVersion(middleVersion - 1) != isBadVersion(middleVersion)) {
+            return middleVersion;
         } else {
-            return badVersion(isBadVersion, middleVersion + 1, end);
+            if(true == isBadVersion(middleVersion)) {
+                end = middleVersion;
+            } else {
+                start = middleVersion + 1;
+            }
         }
     }
 }
