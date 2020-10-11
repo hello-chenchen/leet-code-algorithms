@@ -19,17 +19,13 @@ function binarySearchNumber(left, right) {
     let middle = left;
 
     while(left <= right) {
-        if(left == right || left + 1 == right) {
-            return 0 == guess(left) ? left : right;
-        } else {
-            middle = parseInt((left + right) / 2);
-            if(guess(middle) == -1) {
-                right = middle;
-            } else if(guess(middle) == 1) {
-                left = middle;
-            }else {
-                return middle;
-            }
+        middle = parseInt((left + right) / 2);
+        if(guess(middle) == -1) {
+            right = middle - 1;
+        } else if(guess(middle) == 1) {
+            left = middle + 1;
+        }else {
+            return middle;
         }
     }
 }
