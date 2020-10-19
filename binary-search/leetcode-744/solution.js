@@ -17,7 +17,6 @@ function binarchSearch(letters, target, left, right) {
         } else if(letters[middle] < target) {
             left = middle + 1;
         } else {
-            console.log(middle);
             if(middle == 0) {
                 return letters[1];
             } else if(middle == letters.length - 1) {
