@@ -7,10 +7,9 @@ var peakIndexInMountainArray = function(arr) {
 };
 
 function binarySearch(arr, left, right) {
-    let top = arr[left];
     let middle = left;
     while(left < right && (right - left) >= 2) {
-        let middle = parseInt((left + right) / 2);
+        middle = parseInt((left + right) / 2);
         if(arr[middle] > arr[middle - 1] && arr[middle] < arr[middle + 1]) {
             left = middle;
         } else if(arr[middle] > arr[middle + 1] && arr[middle] < arr[middle - 1]) {
