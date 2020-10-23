@@ -1,5 +1,6 @@
 .vscode/*
 *main
 tmp
-*a.out
-*a.exe
+*.out
+*.exe
+*.class
