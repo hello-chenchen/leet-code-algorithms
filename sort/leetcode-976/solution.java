@@ -5,24 +5,28 @@ class Solution {
     }
 
     private void quickSort(int[] array, int start, int end) {
-        int index = end;
-        int key = array[index];
         int swapTemp = 0;
         int left = start, right = end - 1;
-        while(left <= right) {
-            if(array[left] > key && array[right] < key) {
+        while(left < right) {
+            if(array[left] > array[end] && array[right] < array[end]) {
                 swapTemp = array[left];
                 array[left] = array[right];
                 array[right] = swapTemp;
                 left++;
                 right--;
             } else {
-                if(array[left] < key) {
+                if(array[left] < array[end]) {
                     left++;
                 } else {
                     right--;
                 }
             }
+        }
+
+        if(array[left] < array[end]) {
+            swapTemp = array[left];
+            array[left] = array[end];
+            array[end] = swapTemp;
         }
 
         quickSort(array, start, left - 1);
