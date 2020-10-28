@@ -5,6 +5,7 @@ class Solution {
     }
 
     private void quickSort(int[] array, int start, int end) {
+        //array[end] is keyValue
         int swapTemp = 0;
         int left = start, right = end - 1;
         while(left < right) {
