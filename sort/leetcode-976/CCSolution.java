@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public int largestPerimeter(int[] A) {
         quickSort(A, 0, A.length - 1);
