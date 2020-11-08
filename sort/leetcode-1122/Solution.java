@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,19 +19,17 @@ class Solution {
 
         quickSort(temp, 0, temp.length - 1);
 
-        Iterator iter = m_hashMap.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Integer key = (Integer)entry.getKey();
-            Integer value = (Integer)entry.getValue();
-            for(int i = 0; i < value; i++) {
-                result[i] = key;
+        int index = 0;
+        for(int i = 0; i < arr2.length; i++) {
+            Integer value = (Integer)m_hashMap.get(arr2[i]);
+            for(int n = 0; n < value; n++) {
+                result[index++] = arr2[i];
             }
         }
 
-        int hashSize = m_hashMap.size();
+        int size = arr1.length - temp.length;
         for(int i = 0; i < temp.length; i++) {
-            result[i + hashSize] = temp[i];
+            result[i + size] = temp[i];
         }
 
         return result;
@@ -44,16 +43,9 @@ class Solution {
         for(int i = 0; i < arr1.length; i++) {
             if(true == m_hashMap.containsKey(Integer.valueOf(arr1[i]))) {
                 Integer value = (Integer)m_hashMap.get(arr1[i]);
-                m_hashMap.put(arr1[i], value++);
-            }
-        }
-
-        Iterator iter = m_hashMap.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Integer val = (Integer)entry.getValue();
-            if(0 == val) {
-                m_subList.add((Integer)entry.getKey());
+                m_hashMap.put(arr1[i], ++value);
+            } else {
+                m_subList.add(arr1[i]);
             }
         }
     }
