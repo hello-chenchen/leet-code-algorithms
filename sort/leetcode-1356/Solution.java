@@ -16,7 +16,7 @@ class Solution {
             }
         }
 
-        quickSort()
+        quickSort();
     }
 
     private int containOneBinary(int decNum) {
@@ -32,6 +32,22 @@ class Solution {
     }
 
     private void quickSort(int[] array, int start, int end) {
-        return;
+        int left = start, right = end - 1;
+        int swapTemp = 0;
+        for(int i = left; i < right; i++) {
+            if(array[i] <= array[end]) {
+                swapTemp = array[left];
+                array[left] = array[i];
+                array[i] = swapTemp;
+                left++;
+            }
+        }
+
+        swapTemp = array[left];
+        array[left] = array[end];
+        array[end] = swapTemp;
+
+        quickSort(array, start, left - 1);
+        quickSort(array, left + 1, end);
     }
 }
