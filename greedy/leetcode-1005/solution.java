@@ -15,7 +15,6 @@ class Solution {
 
         if(K < negativeList.size()) {
             mergeSort(negativeList, 0, negativeList.size() - 1);
-            System.out.println(negativeList);
             for(int i = 0; i < K; i++) {
                 result -= negativeList.get(i);
             }
