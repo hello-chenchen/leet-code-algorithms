@@ -38,7 +38,7 @@ public:
             int middle = (start + end) / 2;
             mergeSort(sortValue, start, middle);
             mergeSort(sortValue, middle + 1, end);
-            merge(sortValue, start, middle, end);
+            merge1(sortValue, start, middle, end);
         }
     }
 
@@ -56,7 +56,7 @@ public:
     }
 
     void merge1(vector<int>& sortValue, int start, int middle, int end) {
-        vector<int> temp;
+        vector<int> temp(end - start + 1);
         int idxLeft = start, idxRight = middle + 1;
         for(int i = 0; i <= end - start; i++) {
             temp[i] = sortValue[idxLeft] < sortValue[idxRight] ? sortValue[idxLeft++] : sortValue[idxRight++];
