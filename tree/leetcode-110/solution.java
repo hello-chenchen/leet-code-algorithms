@@ -29,8 +29,8 @@ class Solution {
     }
 
     private boolean isBalancedHight(TreeNode root) {
-        int leftHeight = maxDepth(root.left, 0);
-        int rightHeight = maxDepth(root.right, 0);
+        int leftHeight = height(root.left, 0);
+        int rightHeight = height(root.right, 0);
         if(Math.abs(leftHeight - rightHeight) > 1) {
             return false;
         }
@@ -38,7 +38,7 @@ class Solution {
         return true;
     }
 
-    private int maxDepth(TreeNode root, int depth) {
+    private int height(TreeNode root, int depth) {
         if(null == root) {
             return depth;
         }
@@ -48,8 +48,8 @@ class Solution {
             return depth;
         }
 
-        int leftDepth = maxDepth(root.left, depth);
-        int rightDepth = maxDepth(root.right, depth);
+        int leftDepth = height(root.left, depth);
+        int rightDepth = height(root.right, depth);
         return leftDepth > rightDepth ? leftDepth : rightDepth;
     }
 }
